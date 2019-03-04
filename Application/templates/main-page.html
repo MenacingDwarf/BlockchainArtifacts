@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+    <h3>Welcome, {{ login }}!</h3>
+    <a href="/puzzles" class="btn btn-primary">Puzzles</a>
+    <a href="/artifacts" class="btn btn-primary">My artifacts</a>
+    <a href="/offers" class="btn btn-primary">My offers</a>
+    <a href="/quit" class="btn btn-primary right">Sign out</a>
+    <p>Balance: {{ balance }}</p>
+</body>
+</html>

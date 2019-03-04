@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Offers</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+    <a href="/" class="btn btn-primary">Main page</a>
+    <h1 id="head">Incoming offers list</h1>
+    {% if recipient_offers|length == 0 %}
+        <p>Nothing here</p>
+    {% else %}
+        {% for offer in recipient_offers %}
+            <h2>{{ offer.autor.split('#')[1] }}</h2>
+            <p>{{ offer.artifact.split('#')[1] }}</p>
+            <form action="/accept" method="post">
+                <input type="hidden" name="id" value="{{ offer.offerId }}">
+                <input type="submit" formaction="/accept"  formmethod="post" value="Accept" class="btn btn-primary">
+            </form>
+        {% endfor %}
+    {% endif %}
+    <h1 id="head">Outgoing offers list</h1>
+    {% if autor_offers|length == 0 %}
+        <p>Nothing here</p>
+    {% else %}
+        {% for offer in autor_offers %}
+            <h2>{{ offer.recipient.split('#')[1] }}</h2>
+            <p>{{ offer.artifact.split('#')[1] }}</p>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

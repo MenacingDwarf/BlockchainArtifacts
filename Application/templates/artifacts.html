@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Artifacts</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+    <a href="/" class="btn btn-primary">Main page</a>
+    <h1 id="head">Artifacts list</h1>
+    {% if artifacts|length == 0 %}
+        <p>Nothing here</p>
+    {% else %}
+        {% for artifact in artifacts %}
+            <h2>{{ artifact.title }}</h2>
+            <p>{{ artifact.description }}</p>
+            <img src="{{ artifact.imageurl }}" alt="artifact image" class="w-25">
+            <p>Price: {{ artifact.cost }}</p>
+            <form action="/sell" method="post">
+                <input type="hidden" name="id" value="{{ artifact.artifactId }}">
+                <input type="text" pattern="[A-Za-z0-9]{6,50}" title="Логин должен состоять из латинских букв и цифр, от 6 до 50 символов" id="recipient" name="recipient" class="form-control text-center w-25 mb-2" placeholder="Place recipient login">
+                <input type="submit" name="login" id="submit" class="btn btn-primary mx-auto" formaction="/transfer" formmethod="post" value="Transfer">
+                <input type="submit" name="signup" id="register" class="btn btn-primary mx-auto" formaction="/sell" formmethod="post" value="Sell">
+            </form>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

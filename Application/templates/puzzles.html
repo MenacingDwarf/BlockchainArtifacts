@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Puzzles</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+    <a href="/" class="btn btn-primary">Main page</a>
+    <h1 id="head">Puzzles list</h1>
+    {% if puzzles|length == 0 %}
+        <p>Nothing here</p>
+    {% else %}
+        {% for puzzle in puzzles %}
+            <h2>{{ puzzle.title }}</h2>
+            <p>{{ puzzle.html }}</p>
+            <p>Prize: {{ puzzle.prize.split('#')[1] }}</p>
+            <form action="/check" method="post">
+                <input type="hidden" name="id" value="{{ puzzle.puzzleId }}">
+                <input type="text" name="answer" class="form-control w-25 mb-2" placeholder="Place your answer">
+                <input type="submit" class="btn btn-primary mx-auto" value="Check">
+            </form>
+        {% endfor %}
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,40 @@
+/**
+ * Sample business network definition.
+ */
+namespace org.acme.mynetwork
+
+participant Character identified by login {
+    o String login
+    o String password
+    o Double balance
+}
+asset Offer identified by offerId {
+    o String offerId
+    --> Character autor
+    --> Character recipient
+    --> Artifact artifact
+    o String status
+}
+asset Artifact identified by artifactId {
+    o String artifactId
+    o String title
+    o String description
+    o String imageurl
+    o Double cost
+    --> Character owner
+}
+asset Puzzle identified by puzzleId {
+    o String puzzleId
+    o String title
+    o String html
+    o String status
+    o String answer
+    --> Artifact prize
+}
+transaction Trade {
+    --> Offer offer
+}
+transaction SolvePuzzle {
+    --> Puzzle puzzle
+    --> Character solver
+}
